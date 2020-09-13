@@ -1,8 +1,8 @@
-import * as React from "react";
-import * as d3 from "d3";
+import * as React from 'react';
+import * as d3 from 'd3';
 
-import Bar from "./Bar";
-import Axis from "../Axis/Axis";
+import Bar from './Bar';
+import Axis from '../Axis/Axis';
 
 // TODO: add interface for data and props
 
@@ -28,6 +28,8 @@ const config = {};
  * @returns Rendered BarChart
  */
 const BarChart = ({ x, y, width, height, data, axisMargins, color }) => {
+  const { top, right, bottom, left } = axisMargins;
+
   /**
    * Horizontal scale used to calc bar width
    * Map data items to the chart's width
@@ -67,8 +69,8 @@ const BarChart = ({ x, y, width, height, data, axisMargins, color }) => {
    */
   const yScale = d3
     .scaleLinear()
-    .domain([0, d3.max(data, d => d.y)])
-    .range([height - axisMargins.bottom, axisMargins.top]);
+    .domain([0, d3.max(data, (d) => d.y)])
+    .range([height - bottom, top]);
 
   /**
    * Render a group of Bar components from the dataset
@@ -78,8 +80,8 @@ const BarChart = ({ x, y, width, height, data, axisMargins, color }) => {
   const renderedBars = data.map((item, i) => (
     <Bar
       key={`bar-${i}`}
-      x={xScale(item.x) + axisMargins.left}
-      y={height - yScale(item.y) + axisMargins.top}
+      x={xScale(item.x) + left}
+      y={height - yScale(item.y) + top}
       width={xScale.bandwidth()}
       height={yScale(item.y)}
       color={color}
@@ -87,22 +89,10 @@ const BarChart = ({ x, y, width, height, data, axisMargins, color }) => {
   ));
 
   return (
-    <g className="bar-chart" transform={`translate(${x}, ${y})`}>
-      <g className="bars">
-        {renderedBars}
-      </g>
-      <Axis
-        x={axisMargins.left}
-        y={axisMargins.top + axisMargins.bottom}
-        pos="Left"
-        scale={yScale}
-      />
-      <Axis
-        x={axisMargins.left}
-        y={height + axisMargins.bottom}
-        pos="Bottom"
-        scale={xScale}
-      />
+    <g className='bar-chart' transform={`translate(${x}, ${y})`}>
+      <g className='bars'>{renderedBars}</g>
+      <Axis x={left} y={top + bottom} pos='Left' scale={yScale} />
+      <Axis x={left} y={height + bottom} pos='Bottom' scale={xScale} />
     </g>
   );
 };

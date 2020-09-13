@@ -1,11 +1,11 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import { render } from "react-dom";
+import * as React from 'react';
+import { useState, useEffect } from 'react';
+import { render } from 'react-dom';
 
-import BarChart from "./components/BarChart/BarChart";
+import BarChart from './components/BarChart/BarChart';
 import LineChart from './components/LineChart/LineChart';
 
-import "./styles.css";
+import './styles.css';
 
 /** 
  * Deliverables
@@ -25,11 +25,11 @@ const myData1 = [
 ];
 
 const myData2 = [
-  { x: "USA", y: 193 },
-  { x: "Canada", y: 46 },
-  { x: "UK", y: 320 },
-  { x: "China", y: 341 },
-  { x: "South Africa", y: 88 }
+  { x: 'USA', y: 193 },
+  { x: 'Canada', y: 46 },
+  { x: 'UK', y: 320 },
+  { x: 'China', y: 341 },
+  { x: 'South Africa', y: 88 }
 ];
 
 function App() {
@@ -46,8 +46,8 @@ function App() {
     width: 500,
     height: 500
   });
-  const [chartType, setChartType] = useState("Bar");
-  const [color, setColor] = useState("steelblue");
+  const [chartType, setChartType] = useState('Bar');
+  const [color, setColor] = useState('steelblue');
   const [axisMargins, setAxisMargins] = useState({
     top: 40,
     left: 40,
@@ -65,9 +65,9 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <div className="chart-holder">
-        <svg width="800" height="600">
+    <div className='App'>
+      <div className='chart-holder'>
+        <svg width='800' height='600'>
           {/* <BarChart
             x={0}
             y={0}
@@ -88,7 +88,7 @@ function App() {
           />
         </svg>
       </div>
-      Also, be sure to fill out{" "}
+      Also, be sure to fill out{' '}
       <b>
         <i>design_document.txt</i>
       </b>
@@ -97,5 +97,5 @@ function App() {
   );
 }
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 render(<App />, rootElement);

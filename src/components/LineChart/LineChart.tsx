@@ -1,6 +1,7 @@
-import * as React from "react";
-import * as d3 from "d3";
+import * as React from 'react';
+import * as d3 from 'd3';
 
+import Circle from '../Datapoint/Circle';
 import Axis from '../Axis/Axis';
 
 /**
@@ -18,6 +19,8 @@ import Axis from '../Axis/Axis';
  * @returns Rendered BarChart
  */
 const LineChart = ({ x, y, width, height, data, axisMargins, color }) => {
+  const { top, right, bottom, left } = axisMargins;
+
   /**
    * Horizontal scale used to calc bar width
    * Map data items to the chart's width
@@ -28,11 +31,13 @@ const LineChart = ({ x, y, width, height, data, axisMargins, color }) => {
    * .scaleBand - divides domain evenly (length) or continuous range [start, end]
    * .domain - dataset range used to map to chart range
    * .range - chart range converts to pixels
+   * .padding [0,1] - add datapoint padding
    */
   const xScale = d3
     .scaleBand()
     .domain(data.map((d) => d.x))
     .range([0, width])
+    .padding(0.2);
 
   /**
    * Vertical scale used to calc bar height
@@ -49,26 +54,28 @@ const LineChart = ({ x, y, width, height, data, axisMargins, color }) => {
    */
   const yScale = d3
     .scaleLinear()
-    .domain([0, d3.max(data, d => d.y)])
-    .range([height - axisMargins.bottom, axisMargins.top]);
+    .domain([0, d3.max(data, (d) => d.y)])
+    .range([height - bottom, top]);
+
+  /**
+   * Render a group of circle datapoints from the dataset
+   */
+  const renderedDatapoints = data.map((d, i) => (
+    <Circle
+      key={`dp-circle-${i}`}
+      x={xScale(d.x) + left + right}
+      y={yScale(d.y) + top + bottom}
+    />
+  ));
 
   // TODO: Refactor LineChart and BarChart as they both use the same Axis (custom hook?)
   return (
-    <g className="line-chart" transform={`translate(${x}, ${y})`}>
-      <Axis
-        x={axisMargins.left}
-        y={axisMargins.top + axisMargins.bottom}
-        pos="Left"
-        scale={yScale}
-      />
-      <Axis
-        x={axisMargins.left}
-        y={height + axisMargins.bottom}
-        pos="Bottom"
-        scale={xScale}
-      />
+    <g className='line-chart' transform={`translate(${x}, ${y})`}>
+      {renderedDatapoints}
+      <Axis x={left} y={top + bottom} pos='Left' scale={yScale} />
+      <Axis x={left} y={height + bottom} pos='Bottom' scale={xScale} />
     </g>
-  )
+  );
 };
 
 export default LineChart;
