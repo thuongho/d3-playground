@@ -1,0 +1,13 @@
+.App {
+  font-family: sans-serif;
+  padding: 10px;
+}
+
+.chart-holder {
+  border: 2px dashed lightgray;
+  text-align: center;
+}
+
+.instructions {
+  margin-top: 10px;
+}
