@@ -60,7 +60,7 @@ function App() {
    * Fetch and set data on load
    */
   useEffect(() => {
-    setData(myData2);
+    setData(myData1);
   }, []);
 
   return (

@@ -61,14 +61,13 @@ const BarChart = ({ x, y, width, height, data, axisMargins, color }) => {
    * -----------------------------
    * .scaleLinear - linear relationship between input and output
    * .domain - dataset range used to map to chart range
-   *           extent gives the full array from min to max and nice rounds it off
    * .range - chart range converts to pixels
    *          pixels start from (0,0) so it is inverted
    *          take chart height - margin bottom to margin top to get range
    */
   const yScale = d3
     .scaleLinear()
-    .domain(d3.extent(data , d => d.y)).nice()
+    .domain([0, d3.max(data, d => d.y)])
     .range([height - axisMargins.bottom, axisMargins.top]);
 
   /**
