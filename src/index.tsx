@@ -3,12 +3,13 @@ import { useState, useEffect } from "react";
 import { render } from "react-dom";
 
 import BarChart from "./components/BarChart/BarChart";
+import LineChart from './components/LineChart/LineChart';
 
 import "./styles.css";
 
 /** 
  * Deliverables
- * • Draw user supplied data at a suitable size onto the page.
+  • Draw user supplied data at a suitable size onto the page.
 	• Draw axis and axis ticks showing the ranges.
 	• Allow the user to specify a chart width and height.
 	• Allow the user to specify bar chart vs line chart.
@@ -60,14 +61,23 @@ function App() {
    * Fetch and set data on load
    */
   useEffect(() => {
-    setData(myData1);
+    setData(myData2);
   }, []);
 
   return (
     <div className="App">
       <div className="chart-holder">
         <svg width="800" height="600">
-          <BarChart
+          {/* <BarChart
+            x={0}
+            y={0}
+            width={width}
+            height={height}
+            data={data}
+            axisMargins={axisMargins}
+            color={color}
+          /> */}
+          <LineChart
             x={0}
             y={0}
             width={width}
