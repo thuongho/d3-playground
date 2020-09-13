@@ -73,6 +73,8 @@ const BarChart = ({ x, y, width, height, data, axisMargins, color }) => {
 
   /**
    * Render a group of Bar components from the dataset
+   * -------------------------------------------------
+   * .bandwidth - gives the bar's width
    */
   const renderedBars = data.map((item, i) => (
     <Bar
@@ -95,6 +97,12 @@ const BarChart = ({ x, y, width, height, data, axisMargins, color }) => {
         y={axisMargins.top + axisMargins.bottom}
         pos="Left"
         scale={yScale}
+      />
+      <Axis
+        x={axisMargins.left}
+        y={height + axisMargins.bottom}
+        pos="Bottom"
+        scale={xScale}
       />
     </g>
   );
