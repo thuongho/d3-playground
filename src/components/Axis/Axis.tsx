@@ -1,13 +1,6 @@
 import * as React from 'react';
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import * as d3 from 'd3';
-import styled from 'styled-components';
-
-const TextContainer = styled.text`
-  fill: black;
-  font-family: sans-serif;
-  font-size: 10px;
-`;
 
 /**
  * Generates an Axis component using d3
@@ -16,11 +9,9 @@ const TextContainer = styled.text`
  * @property {Number} y - y coord
  * @property {String} pos - position of the axis
  * @property {Function} scale - d3 scale for scaling the axis
- * @property {text} label - label the axis
- * @property {Text[]} labels - labels for the axis
  * @returns Axis component
  */
-const Axis = ({ x, y, pos, scale, label, labels }) => {
+const Axis = ({ x, y, pos, scale }) => {
   /**
    * Reference DOM so that React can update it
    */
