@@ -2,14 +2,24 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 const ButtonContainer = styled.button`
-  background: royalblue;
-  color: white;
-  max-width: 80px;
-  min-width: 60px;
-  height: 60px;
+  background-color: white;
+  color: black;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  width: 60px;
+  height: 30px;
+  margin-right: 5px;
+
+  &:hover {
+    background-color: red;
+    opacity: 0.6;
+    color: white;
+    border: 1px solid black;
+  }
 
   &.active {
     background: red;
+    color: white;
   }
 `;
 

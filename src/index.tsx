@@ -61,11 +61,13 @@ function App() {
   /**
    * Method to update chart attributes that is passed into controls
    * Use as callbacks in Controls to send user interaction to App
+   * and update the state
    * @function updateDataView
-   * @param {Object} update
+   * @param {String} update - state
+   * @param {String} prop - the updated state type
    * @returns null
    */
-  const updateDataView = (update, prop) => {
+  const updateDataView = (update: string, prop: string) => {
     setChartControls({ ...chartControls, [prop]: update });
   };
 
@@ -112,11 +114,6 @@ function App() {
         </svg>
       </div>
       <Controls updateDataView={updateDataView} chartControls={chartControls} />
-      Also, be sure to fill out{' '}
-      <b>
-        <i>design_document.txt</i>
-      </b>
-      .
     </div>
   );
 }

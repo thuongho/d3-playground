@@ -1,6 +1,7 @@
 .App {
   font-family: sans-serif;
   padding: 10px;
+  display: flex;
 }
 
 .chart-holder {
