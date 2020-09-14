@@ -17,14 +17,14 @@ const config = {};
  * Generates a component using d3 calculations
  * TODO: fix JSDoc as the params are props
  * @function BarChart
- * @param {Number} x - x coord for starting point
- * @param {Number} y - y coord for starting point
- * @param {Number} width - width of chart
- * @param {Number} height - height of chart
- * @param {Object[]} data - dataset for charting
- * @param {Number} axisMargins - margins for axis
- * @param {String} color - color for bar
- * @param {Number} barPadding - spacing between bars
+ * @property {Number} x - x coord for starting point
+ * @property {Number} y - y coord for starting point
+ * @property {Number} width - width of chart
+ * @property {Number} height - height of chart
+ * @property {Object[]} data - dataset for charting
+ * @property {Number} axisMargins - margins for axis
+ * @property {String} color - color for bar
+ * @property {Number} barPadding - spacing between bars
  * @returns Rendered BarChart
  */
 const BarChart = ({ x, y, width, height, data, axisMargins, color }) => {

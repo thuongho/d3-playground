@@ -1,7 +1,7 @@
-import * as React from "react";
-import { useState, useRef, useEffect } from "react";
-import * as d3 from "d3";
-import styled from "styled-components";
+import * as React from 'react';
+import { useState, useRef, useEffect } from 'react';
+import * as d3 from 'd3';
+import styled from 'styled-components';
 
 const TextContainer = styled.text`
   fill: black;
@@ -12,12 +12,12 @@ const TextContainer = styled.text`
 /**
  * Generates an Axis component using d3
  * @function Axis
- * @param {Number} x - x coord
- * @param {Number} y - y coord
- * @param {String} pos - position of the axis
- * @param {Function} scale - d3 scale for scaling the axis
- * @param {text} label - label the axis
- * @param {Text[]} labels - labels for the axis
+ * @property {Number} x - x coord
+ * @property {Number} y - y coord
+ * @property {String} pos - position of the axis
+ * @property {Function} scale - d3 scale for scaling the axis
+ * @property {text} label - label the axis
+ * @property {Text[]} labels - labels for the axis
  * @returns Axis component
  */
 const Axis = ({ x, y, pos, scale, label, labels }) => {

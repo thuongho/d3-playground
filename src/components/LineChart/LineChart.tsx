@@ -3,26 +3,27 @@ import * as d3 from 'd3';
 
 import Circle from '../Datapoint/Circle';
 import Axis from '../Axis/Axis';
+import Line from './Line';
 
 /**
  * Generates a component using d3 calculations
  * TODO: fix JSDoc as the params are props
  * @function BarChart
- * @param {Number} x - x coord for starting point
- * @param {Number} y - y coord for starting point
- * @param {Number} width - width of chart
- * @param {Number} height - height of chart
- * @param {Object[]} data - dataset for charting
- * @param {Number} axisMargins - margins for axis
- * @param {String} color - color for bar
- * @param {Number} barPadding - spacing between bars
+ * @property {Number} x - x coord for starting point
+ * @property {Number} y - y coord for starting point
+ * @property {Number} width - width of chart
+ * @property {Number} height - height of chart
+ * @property {Object[]} data - dataset for charting
+ * @property {Number} axisMargins - margins for axis
+ * @property {String} color - color for bar
+ * @property {Number} barPadding - spacing between bars
  * @returns Rendered BarChart
  */
 const LineChart = ({ x, y, width, height, data, axisMargins, color }) => {
   const { top, right, bottom, left } = axisMargins;
 
   /**
-   * Horizontal scale used to calc bar width
+   * Horizontal scale used to calc datapoint's x coord
    * Map data items to the chart's width
    * @function xScale
    * @param {Number} x - value of x
@@ -40,7 +41,7 @@ const LineChart = ({ x, y, width, height, data, axisMargins, color }) => {
     .padding(0.2);
 
   /**
-   * Vertical scale used to calc bar height
+   * Vertical scale used to calc datapoint's y coord
    * Take max y value and map to height of chart
    * @function yScale
    * @param {Number} y - value of y
@@ -72,6 +73,12 @@ const LineChart = ({ x, y, width, height, data, axisMargins, color }) => {
   return (
     <g className='line-chart' transform={`translate(${x}, ${y})`}>
       {renderedDatapoints}
+      <Line
+        data={data}
+        axisMargins={axisMargins}
+        xScale={xScale}
+        yScale={yScale}
+      />
       <Axis x={left} y={top + bottom} pos='Left' scale={yScale} />
       <Axis x={left} y={height + bottom} pos='Bottom' scale={xScale} />
     </g>
