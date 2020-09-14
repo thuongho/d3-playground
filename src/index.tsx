@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 
 import BarChart from './components/BarChart/BarChart';
 import LineChart from './components/LineChart/LineChart';
+import Controls from './components/Controls/Controls';
 
 import './styles.css';
 
@@ -42,12 +43,12 @@ function App() {
    * axisMargins - margins for the chart
    */
   const [data, setData] = useState([]);
-  const [dimensions, setDimensions] = useState({
+  const [chartControls, setChartControls] = useState({
     width: 500,
-    height: 500
+    height: 500,
+    type: 'bar',
+    color: 'steelblue'
   });
-  const [chartType, setChartType] = useState('Bar');
-  const [color, setColor] = useState('steelblue');
   const [axisMargins, setAxisMargins] = useState({
     top: 40,
     left: 40,
@@ -55,7 +56,18 @@ function App() {
     bottom: 40
   });
 
-  const { width, height } = dimensions;
+  const { type, width, height, color } = chartControls;
+
+  /**
+   * Method to update chart attributes that is passed into controls
+   * Use as callbacks in Controls to send user interaction to App
+   * @function updateDataView
+   * @param {Object} update
+   * @returns null
+   */
+  const updateDataView = (update, prop) => {
+    setChartControls({ ...chartControls, [prop]: update });
+  };
 
   /**
    * Fetch and set data on load
@@ -64,30 +76,42 @@ function App() {
     setData(myData2);
   }, []);
 
+  const renderedChartType = () => {
+    if (type === 'bar') {
+      return (
+        <BarChart
+          x={0}
+          y={0}
+          width={width}
+          height={height}
+          data={data}
+          axisMargins={axisMargins}
+          color={color}
+        />
+      );
+    } else {
+      return (
+        <LineChart
+          x={0}
+          y={0}
+          width={width}
+          height={height}
+          data={data}
+          axisMargins={axisMargins}
+          color={color}
+        />
+      );
+    }
+  };
+
   return (
     <div className='App'>
       <div className='chart-holder'>
         <svg width='800' height='600'>
-          {/* <BarChart
-            x={0}
-            y={0}
-            width={width}
-            height={height}
-            data={data}
-            axisMargins={axisMargins}
-            color={color}
-          /> */}
-          <LineChart
-            x={0}
-            y={0}
-            width={width}
-            height={height}
-            data={data}
-            axisMargins={axisMargins}
-            color={color}
-          />
+          {renderedChartType()}
         </svg>
       </div>
+      <Controls updateDataView={updateDataView} chartControls={chartControls} />
       Also, be sure to fill out{' '}
       <b>
         <i>design_document.txt</i>
