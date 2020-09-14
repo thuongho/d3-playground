@@ -5,3 +5,10 @@ The way I designed the components
 - This way we are always in control of rendering the components for optimization
 - Later on if there are a lot of calculations, to prevent d3 from recalculating on every render, we can use useEffect to tell focus on when to re-render and also useMemo to cache the results if nothing has changed.
 - This way the components are more flexible and we can reuse them
+
+Updated:
+A lot of our time is spent reading what we've coded or what someone else has coded. So I wanted to add enough JSDocs that if a few months from now I look back or someone new to React/D3 can pick up and maintain the work. That's why I chose to let D3 do the calculation, while letting React create and control the rendering of the components. 
+
+In an example where D3 controls the DOM, it would be a lot harder for someone to glance at the code and figure out what D3 is building vs reading a simple <BarChart /> component from React. 
+
+By using d3 to only render the attributes for drawing the SVG, with this method, we can expose a lot of the data input as props and make building the chart very customizable.
