@@ -17,9 +17,10 @@ const PathContainer = styled.path`
  * @property {Number} height - height of chart
  * @property {Object[]} data - dataset for charting
  * @property {Number} axisMargins - margins for axis
+ * @property {String} color - line color
  * @retunrs Rendered Line
  */
-const Line = ({ data, axisMargins, xScale, yScale }) => {
+const Line = ({ data, axisMargins, xScale, yScale, color }) => {
   const { top, right, bottom, left } = axisMargins;
 
   /**
@@ -41,7 +42,7 @@ const Line = ({ data, axisMargins, xScale, yScale }) => {
       className='line'
       transform={`translate(${left + right}, ${top + bottom})`}
     >
-      <PathContainer d={line(data)} />
+      <PathContainer d={line(data)} style={{ stroke: color }} />
     </g>
   );
 };

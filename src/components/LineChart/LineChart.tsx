@@ -78,6 +78,7 @@ const LineChart = ({ x, y, width, height, data, axisMargins, color }) => {
         axisMargins={axisMargins}
         xScale={xScale}
         yScale={yScale}
+        color={color}
       />
       <Axis x={left} y={top + bottom} pos='Left' scale={yScale} />
       <Axis x={left} y={height + bottom} pos='Bottom' scale={xScale} />
